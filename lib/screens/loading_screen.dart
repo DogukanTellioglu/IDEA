@@ -1,4 +1,3 @@
-// Açılış ekranımız buraya gelecek  
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -10,7 +9,6 @@ class LoadingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SizedBox.expand(
-        //width: double.infinity,
         child: Column(
           children: [
             // Logo bölümü
@@ -23,7 +21,8 @@ class LoadingScreen extends StatelessWidget {
                   fit: BoxFit.contain,
                 ),
               ),
-            )
+            ),
+
             // Yükleniyor yazısı
             CircularProgressIndicator(),
           ],
