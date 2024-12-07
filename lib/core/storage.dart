@@ -1,1 +1,1 @@
-// hafızaya kalıcı olarak yazma/okuma işlemlerimizi burada yapıcaz
+// hafizaya kalici olarak yazip/okuma islemlerimiz burda yapicaz

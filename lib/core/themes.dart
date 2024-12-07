@@ -1,1 +1,1 @@
-// burada temalandırma + renkler vb. şeyler yazılacak
+// burada temalandirma + renkler + ... yazicaz.
