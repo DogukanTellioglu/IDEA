@@ -1,13 +1,16 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  get color => null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // AppBar
+      backgroundColor: Color.fromARGB(255, 48, 214, 200),
+      // AppBarrr
       appBar: AppBar(
         title: const Text('Ana Sayfa'),
         actions: [

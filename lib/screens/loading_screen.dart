@@ -1,5 +1,8 @@
+import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});
@@ -14,8 +17,8 @@ class LoadingScreen extends StatelessWidget {
             // Logo bölümü
             Expanded(
               child: Container(
-                width: 150,
-                height: 150,
+                width: 250,
+                height: 250,
                 child: Image.asset(
                   'assets/images/logo.png',
                   fit: BoxFit.contain,
@@ -24,7 +27,24 @@ class LoadingScreen extends StatelessWidget {
             ),
 
             // Yükleniyor yazısı
-            CircularProgressIndicator(),
+            //CircularProgressIndicator(),
+            InkWell(
+              onTap: () => context.go("/home"),
+              child: SizedBox(
+                width: 200,
+                child:
+                    DotLottieLoader.fromAsset("assets/motions/loading.lottie",
+                        frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
+                  if (dotlottie != null) {
+                    return Lottie.memory(dotlottie.animations.values.single);
+                  } else {
+                    return Container();
+                  }
+                }),
+              ),
+            ),
+
+            SizedBox(height: 20),
           ],
         ),
       ),
