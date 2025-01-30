@@ -119,13 +119,18 @@ lib/
 
 ```
 
-  
+## Demo Videosu
 
 ## Ekran Görüntüleri
 
-[Uygulama ekran görüntüleri buraya eklenecek]
+![Ana Sayfa](assets/screenshots/sc1.png)    
+![Ana Sayfa](assets/screenshots/sc2.png) 
+![Ana Sayfa](assets/screenshots/sc3.png) 
+![Ana Sayfa](assets/screenshots/sc4.png) 
+![Ana Sayfa](assets/screenshots/sc5.png) 
+![Ana Sayfa](assets/screenshots/sc6.png) 
+![Ana Sayfa](assets/screenshots/sc7.png)
 
-  
 
 ## Projeye Katkı Sağlama
 
