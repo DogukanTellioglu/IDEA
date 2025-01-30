@@ -19,6 +19,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title:
             Text('MOODIFY', style: Theme.of(context).textTheme.headlineMedium),
         centerTitle: true,

@@ -43,7 +43,7 @@ class BottomMenu extends StatelessWidget {
               context.go("/history");
             },
             icon: Icon(
-              Icons.history,
+              Icons.shopify_rounded,
             ),
           ),
           IconButton(

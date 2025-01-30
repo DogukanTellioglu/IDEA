@@ -1,5 +1,3 @@
-// uygulamada sayfalari ve navigasyon islemlerini burada tanimlicaz
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/history_screen.dart';
@@ -11,6 +9,7 @@ import '../screens/register_screen.dart';
 import '../screens/search_screen.dart';
 import '../screens/settings_screen.dart';
 import '../screens/voice_screen.dart';
+import '../screens/chat_screen.dart'; // Chat ekranını içe aktardık
 
 // Router yapılandırması
 final router = GoRouter(
@@ -77,6 +76,13 @@ final router = GoRouter(
       pageBuilder: (context, state) => NoTransitionPage<void>(
         key: state.pageKey,
         child: const HistoryScreen(),
+      ),
+    ),
+    GoRoute(
+      path: '/chat', // Chat rotasını ekledik
+      pageBuilder: (context, state) => NoTransitionPage<void>(
+        key: state.pageKey,
+        child: const ChatScreen(),
       ),
     ),
   ],

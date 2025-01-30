@@ -11,6 +11,16 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
+  List<String> productImages = [
+    "assets/images/urun1.webp",
+    "assets/images/urun2.webp",
+    "assets/images/urun3.webp",
+  ];
+  List<String> productNames = [
+    "Premium Üyelik",
+    "Premium Sesli Sohbet",
+    "Premium Ses Seçenekleri",
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,39 +70,43 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 mainAxisSpacing: 8,
                 crossAxisSpacing: 8,
               ),
-              itemCount: 10,
+              itemCount: productNames.length,
               itemBuilder: (context, index) => Card(
                 clipBehavior: Clip.antiAlias,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Stack(
-                      children: [
-                        AspectRatio(
-                          aspectRatio: 1,
-                          child: Container(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .surfaceContainerHighest,
-                            child: Image.asset(
-                              "assets/images/urun1.webp",
-                              fit: BoxFit.cover,
+                    Expanded(
+                      // Bu satırı ekledik
+                      child: Stack(
+                        children: [
+                          AspectRatio(
+                            aspectRatio: 1,
+                            child: Container(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .surfaceContainerHighest,
+                              child: Image.asset(
+                                productImages[
+                                    index], // Her ürün için farklı görsel
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                        Positioned(
-                          top: 8,
-                          right: 8,
-                          child: IconButton(
-                            icon: Icon(Icons.favorite_border),
-                            style: IconButton.styleFrom(
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.surface,
+                          Positioned(
+                            top: 8,
+                            right: 8,
+                            child: IconButton(
+                              icon: Icon(Icons.favorite_border),
+                              style: IconButton.styleFrom(
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.surface,
+                              ),
+                              onPressed: () {},
                             ),
-                            onPressed: () {},
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.all(8),
@@ -100,7 +114,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Ürün ${index + 1}',
+                            productNames[index],
                             style: Theme.of(context).textTheme.titleMedium,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -178,37 +192,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     ),
                     keyboardType: TextInputType.number,
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Kategoriler',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            SizedBox(height: 8),
-            Wrap(
-              spacing: 8,
-              children: [
-                FilterChip(
-                  label: Text('Elektronik'),
-                  selected: true,
-                  onSelected: (_) {},
-                ),
-                FilterChip(
-                  label: Text('Moda'),
-                  selected: false,
-                  onSelected: (_) {},
-                ),
-                FilterChip(
-                  label: Text('Ev'),
-                  selected: false,
-                  onSelected: (_) {},
-                ),
-                FilterChip(
-                  label: Text('Spor'),
-                  selected: false,
-                  onSelected: (_) {},
                 ),
               ],
             ),
