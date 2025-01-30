@@ -15,7 +15,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Geçmiş'),
+        title: Text('Market'),
         actions: [
           IconButton(
             icon: Icon(Icons.filter_list),

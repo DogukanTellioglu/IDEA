@@ -19,7 +19,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Q', style: Theme.of(context).textTheme.headlineMedium),
+        title:
+            Text('MOODIFY', style: Theme.of(context).textTheme.headlineMedium),
         centerTitle: true,
         actions: [
           IconButton(
@@ -113,15 +114,15 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     SuggestedActionCard(
                       icon: Icons.chat,
-                      title: "Sohbet Başlat",
+                      title: "Bugün nasılsınız?",
                       subtitle: "Yapay zeka ile sohbet edin",
                       onTap: () => context.push("/chat"),
                     ),
                     SizedBox(height: 16),
                     SuggestedActionCard(
                       icon: Icons.history,
-                      title: "Son Aramalar",
-                      subtitle: "Geçmiş aramalarınızı görüntüleyin",
+                      title: "Yakın Zamandaki Sohbetler",
+                      subtitle: "Geçmiş sohbetlerinizi görüntüleyin",
                       onTap: () => context.push("/search"),
                     ),
                     SizedBox(height: 16),
