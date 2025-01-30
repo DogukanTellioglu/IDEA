@@ -11,9 +11,12 @@ dependencies:
   dotlottie_loader: ^0.0.4
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.2
   flutter_secure_storage: ^9.2.2
-  go_router: ^14.6.2
+  go_router: ^14.6.1
+  google_fonts: ^6.2.1
   lottie: ^3.1.3
+  provider: ^6.1.2
   shared_preferences: ^2.3.3
 
 dev_dependencies:
@@ -24,7 +27,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/logo.png
+    - assets/images/
     - assets/icons/
     - assets/languages/
     - assets/motions/
