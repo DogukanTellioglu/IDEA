@@ -121,6 +121,8 @@ lib/
 
 ## Demo Videosu
 
+https://github.com/user-attachments/assets/c6181ab1-872d-482a-bab7-5325b5178125
+
 ## Ekran Görüntüleri
 
 ![Ana Sayfa](assets/screenshots/sc1.png)    
