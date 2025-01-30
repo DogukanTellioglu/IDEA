@@ -19,10 +19,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title:
-            Text('MOODIFY', style: Theme.of(context).textTheme.headlineMedium),
+        backgroundColor: Color(0xFF419FD9),
         centerTitle: true,
+        title: Text(
+          'MOODIFY',
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                color: Colors.white, // Yazı rengi beyaz
+              ),
+        ),
         actions: [
           IconButton(
             icon: Icon(CupertinoIcons.app),

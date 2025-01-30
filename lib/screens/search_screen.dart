@@ -49,12 +49,12 @@ class SearchScreen extends StatelessWidget {
                     spacing: 8,
                     children: [
                       ActionChip(
-                        label: Text("Flutter"),
+                        label: Text("Pazartesi"),
                         onPressed: () {},
                         avatar: Icon(Icons.history, size: 16),
                       ),
                       ActionChip(
-                        label: Text("Dart"),
+                        label: Text("Cuma"),
                         onPressed: () {},
                         avatar: Icon(Icons.history, size: 16),
                       ),
@@ -92,13 +92,13 @@ class SearchScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Başlık ${index + 1}",
+                              "Gün ${index + 1}",
                               style: Theme.of(context).textTheme.titleMedium,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
-                              "Alt başlık açıklama yazısı burada yer alır",
+                              "Bugünkü moodlarınıza bakmak için tıklayınız.",
                               style: Theme.of(context).textTheme.bodySmall,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,

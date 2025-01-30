@@ -16,7 +16,7 @@ class VoiceScreen extends StatelessWidget {
               SliverAppBar.large(
                 floating: true,
                 pinned: true,
-                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                backgroundColor: Color(0xFF419FD9),
                 title: Text(
                   "Akıllı Asistan",
                   style: TextStyle(
