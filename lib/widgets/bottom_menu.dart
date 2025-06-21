@@ -27,7 +27,7 @@ class BottomMenu extends StatelessWidget {
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Ana Sayfa"),
         BottomNavigationBarItem(icon: Icon(Icons.search), label: "Ara"),
-        BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Tweet"),
+        BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Gönderi"),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
       ],
       selectedItemColor: const Color.fromARGB(255, 0, 0, 0),
