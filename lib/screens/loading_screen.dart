@@ -1,52 +1,39 @@
-import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
+import '../core/session.dart';
 
-class LoadingScreen extends StatelessWidget {
+class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
 
   @override
+  State<LoadingScreen> createState() => _LoadingScreenState();
+}
+
+class _LoadingScreenState extends State<LoadingScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _checkSession();
+  }
+
+  Future<void> _checkSession() async {
+    await Session.restoreSession();
+    final isLoggedIn = await Session.isLoggedIn();
+
+    if (!mounted) return;
+    if (isLoggedIn) {
+      context.go('/home');
+    } else {
+      context.go('/login');
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.white,
-      body: SizedBox.expand(
-        child: Column(
-          children: [
-            // Logo bölümü
-            Expanded(
-              child: Container(
-                width: 250,
-                height: 250,
-                child: Image.asset(
-                  'assets/images/logo.png',
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-
-            // Yükleniyor yazısı
-            //CircularProgressIndicator(),
-            InkWell(
-              onTap: () => context.go("/home"),
-              child: SizedBox(
-                width: 200,
-                child:
-                    DotLottieLoader.fromAsset("assets/motions/loading.lottie",
-                        frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
-                  if (dotlottie != null) {
-                    return Lottie.memory(dotlottie.animations.values.single);
-                  } else {
-                    return Container();
-                  }
-                }),
-              ),
-            ),
-
-            SizedBox(height: 20),
-          ],
-        ),
+      body: Center(
+        child: CircularProgressIndicator(),
       ),
     );
   }

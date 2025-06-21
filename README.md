@@ -9,31 +9,12 @@ A new Flutter project.
 
   
 
-## Proje Hakkında
-
-Moodify, kullanıcıların günlük ruh hallerini görselleştirerek izlemelerine, analiz etmelerine ve duygusal farkındalıklarını artırmalarına yardımcı olan interaktif bir mood tracker uygulamasıdır.
-
-  
 
 ## Ekibimiz
-
--  **Danışman:**  
-[https://github.com/keyvanarasteh](Keyvan Arasteh)
-
 
 -  **Takım Üyeleri:**
 
 - 1 [https://github.com/DogukanTellioglu](Doğukan Tellioğlu)
-
-  
-
-## Özellikler
-
-- [Günlük ruh hali ve psikolojik durum takibi]
-
-- [Bulunan ruh haline, durumuna göre yapay zeka tarafından öneri verilmesi]
-
-- [Haftalık ve aylık olarak girilen verilerin istatiği]
 
   
 
@@ -43,9 +24,6 @@ Moodify, kullanıcıların günlük ruh hallerini görselleştirerek izlemelerin
 
 - Dart
 
-- AI
-
-  
 
 ## Başlangıç
 
@@ -121,17 +99,6 @@ lib/
 
 ## Demo Videosu
 
-https://github.com/user-attachments/assets/c6181ab1-872d-482a-bab7-5325b5178125
-
-## Ekran Görüntüleri
-
-![Ana Sayfa](assets/screenshots/sc1.png)    
-![Ana Sayfa](assets/screenshots/sc2.png) 
-![Ana Sayfa](assets/screenshots/sc3.png) 
-![Ana Sayfa](assets/screenshots/sc4.png) 
-![Ana Sayfa](assets/screenshots/sc5.png) 
-![Ana Sayfa](assets/screenshots/sc6.png) 
-![Ana Sayfa](assets/screenshots/sc7.png)
 
 
 ## Projeye Katkı Sağlama
@@ -156,13 +123,8 @@ https://github.com/user-attachments/assets/c6181ab1-872d-482a-bab7-5325b5178125
 
 ## İletişim
 
-- Proje Bağlantısı: [https://github.com/DogukanTellioglu/Moodify]
 - İstinye Üniversitesi: [https://www.istinye.edu.tr/](https://www.istinye.edu.tr/)
 
   
 
 ## Teşekkürler
-
-- İstinye Üniversitesi'ne destekleri için teşekkür ederiz
-
-- Keyvan Arasteh'e destekleri için teşekkür ederiz

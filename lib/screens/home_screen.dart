@@ -19,10 +19,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF419FD9),
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         centerTitle: true,
         title: Text(
-          'MOODIFY',
+          'IDEA',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 color: Colors.white, // Yazı rengi beyaz
               ),
@@ -88,9 +88,9 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              flex: 2,
+              flex: 4,
               child: Container(
-                padding: EdgeInsets.all(24),
+                padding: EdgeInsets.all(32),
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: DotLottieLoader.fromAsset(
@@ -119,22 +119,22 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     SuggestedActionCard(
                       icon: Icons.chat,
-                      title: "Bugün nasılsınız?",
-                      subtitle: "Yapay zeka ile sohbet edin",
-                      onTap: () => context.push("/chat"),
+                      title: "Ne Düşünüyorsunuz?",
+                      subtitle: "Fikrinizi, görüşlerinizi paylaşın!",
+                      onTap: () => context.push("/tweet"),
                     ),
                     SizedBox(height: 16),
                     SuggestedActionCard(
                       icon: Icons.history,
-                      title: "Yakın Zamandaki Sohbetler",
-                      subtitle: "Geçmiş sohbetlerinizi görüntüleyin",
+                      title: "Yakın Zamanda Paşlaktıklarınız",
+                      subtitle: "Geçmiş paylaşımlarınızı görüntüleyin.",
                       onTap: () => context.push("/search"),
                     ),
                     SizedBox(height: 16),
                     SuggestedActionCard(
                       icon: Icons.settings,
                       title: "Ayarlar",
-                      subtitle: "Uygulama ayarlarını özelleştirin",
+                      subtitle: "Uygulama ayarlarınızı özelleştirin.",
                       onTap: () => context.push("/settings"),
                     ),
                   ],

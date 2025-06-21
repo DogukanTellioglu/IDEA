@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
-import '../core/constants.dart';
-import '../core/themes.dart';
+import '../core/session.dart';
 import '../widgets/bottom_menu.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -12,72 +9,53 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Session.currentUser;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profilim"),
-        actions: [
-          IconButton(
-            icon: Icon(CupertinoIcons.moon),
-            onPressed: () {
-              context.read<ThemeProvider>().toggleTheme();
-            },
-          ),
-        ],
+        title: const Text("Profilim"),
       ),
-      body: ListView(
-        padding: EdgeInsets.all(16),
-        children: [
-          Card(
-            child: Padding(
-              padding: EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 50,
-                    child: Text(
-                      "DT",
-                      style: TextStyle(fontSize: 24),
+      body: user == null
+          ? const Center(child: Text("Kullanıcı bilgisi bulunamadı."))
+          : ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundImage: NetworkImage(user.avatarUrl),
+                        ),
+                        const SizedBox(height: 16),
+                        ListTile(
+                          leading: const Icon(Icons.person),
+                          title: Text(user.name),
+                          subtitle: const Text("Kullanıcı Adı"),
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.email),
+                          title: Text(user.email),
+                          subtitle: const Text("E-posta"),
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 16),
-                  ListTile(
-                    leading: Icon(Icons.person),
-                    title: Text("Doğukan Tellioğlu"),
-                    subtitle: Text("Ad Soyad"),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.email),
-                    title: Text("dogukantellioglu@live.com"),
-                    subtitle: Text("E-posta"),
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 24),
+                FilledButton.icon(
+                  onPressed: () async {
+                    await Session.logout();
+                    if (context.mounted) context.go('/login');
+                  },
+                  icon: const Icon(Icons.logout),
+                  label: const Text("Çıkış Yap"),
+                ),
+              ],
             ),
-          ),
-          SizedBox(height: 24),
-          FilledButton.icon(
-            onPressed: () {},
-            icon: Icon(Icons.logout),
-            label: Text("Hesaptan Çıkış Yap"),
-            style: FilledButton.styleFrom(
-              minimumSize: Size(double.infinity, 50),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ),
-          if (context.canPop())
-            TextButton.icon(
-              onPressed: () => context.pop(),
-              icon: Icon(Icons.arrow_back),
-              label: Text("Geri Dön"),
-              style: TextButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
-              ),
-            ),
-        ],
-      ),
-      bottomNavigationBar: BottomMenu(),
+      bottomNavigationBar: const BottomMenu(),
     );
   }
 }

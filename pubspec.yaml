@@ -31,4 +31,4 @@ flutter:
     - assets/icons/
     - assets/languages/
     - assets/motions/
-    * assets/screenshots/
+    - assets/screenshots/

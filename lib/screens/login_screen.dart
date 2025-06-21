@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+
+import '../core/session.dart';
+import '../core/storage.dart';
+import '../models/user.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,122 +13,88 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController epostaYonetici = TextEditingController();
-  TextEditingController sifreYonetici = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
-  girisYap() {
-    if (epostaYonetici.text.isEmpty || sifreYonetici.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Bilgileriniz Giriniz"),
-          // action: SnackBarAction(label: "Kapat", onPressed: () {}),
-          // margin: EdgeInsets.all(20),
-          behavior: SnackBarBehavior.floating,
-          backgroundColor: Colors.red,
-          showCloseIcon: true,
-        ),
-      );
-    } else {
-      if (sifreYonetici.text.length < 8) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("Sifre Minimum 8 haneli olabilir."),
-            // action: SnackBarAction(label: "Kapat", onPressed: () {}),
-            // margin: EdgeInsets.all(20),
-            behavior: SnackBarBehavior.floating,
-            backgroundColor: Colors.red,
-            showCloseIcon: true,
-          ),
-        );
-      } else {
-        context.go("/home");
-      }
+  String? _errorMessage;
+
+  void _girisYap() async {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    setState(() => _errorMessage = null);
+
+    final userData = await StorageService.getUser();
+
+    if (userData == null) {
+      setState(() => _errorMessage = "Kayıtlı kullanıcı bulunamadı.");
+      return;
     }
+
+    if (userData['email'] != email || userData['password'] != password) {
+      setState(() => _errorMessage = "E-posta veya şifre hatalı.");
+      return;
+    }
+
+    final user = User(
+      name: userData['username']!,
+      email: userData['email']!,
+      password: userData['password']!,
+      avatarUrl: userData['avatar']!,
+    );
+
+    await Session.login(user);
+    if (!mounted) return;
+    context.go('/home');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: const Text("Giriş Yap")),
       body: Center(
         child: SizedBox(
           width: 300,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextField(
-                controller: epostaYonetici,
-                decoration: InputDecoration(
-                  hintText: "E-Posta",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                if (_errorMessage != null)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: Text(
+                      _errorMessage!,
+                      style: const TextStyle(color: Colors.red),
+                    ),
                   ),
-                  prefixIcon: Icon(Icons.email),
-                ),
-              ),
-              SizedBox(height: 16),
-              TextFormField(
-                obscureText: true,
-                controller: sifreYonetici,
-                decoration: InputDecoration(
-                  hintText: "Sifre",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                TextField(
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    hintText: "E-Posta",
+                    prefixIcon: Icon(Icons.email),
                   ),
-                  prefixIcon: Icon(Icons.lock),
+                  keyboardType: TextInputType.emailAddress,
                 ),
-              ),
-              SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: girisYap,
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: passwordController,
+                  decoration: const InputDecoration(
+                    hintText: "Şifre",
+                    prefixIcon: Icon(Icons.lock),
                   ),
+                  obscureText: true,
                 ),
-                child: const Text("Giris Yap", style: TextStyle(fontSize: 16)),
-              ),
-              SizedBox(height: 12),
-              ElevatedButton(
-                onPressed: () {
-                  context.pushReplacement("/register");
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                const SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: _girisYap,
+                  child: const Text("Giriş Yap"),
                 ),
-                child: const Text("Kayit Ol", style: TextStyle(fontSize: 16)),
-              ),
-              SizedBox(height: 24),
-              OutlinedButton.icon(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                const SizedBox(height: 12),
+                OutlinedButton(
+                  onPressed: () => context.push('/register'),
+                  child: const Text("Kayıt Ol"),
                 ),
-                icon: Image.asset('assets/icons/google_icon.png', height: 24),
-                label: Text("Google ile Giris Yap",
-                    style: TextStyle(fontSize: 16)),
-              ),
-              SizedBox(height: 12),
-              OutlinedButton.icon(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                icon: Image.asset('assets/icons/apple_icon.png', height: 24),
-                label: Text("Apple ID ile Giris Yap",
-                    style: TextStyle(fontSize: 16)),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
